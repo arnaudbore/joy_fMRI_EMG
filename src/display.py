@@ -11,7 +11,7 @@ import sys
 from utils import scale_position_cursor, log, load_emg_calibration
 from parameters import positions_target, size_cursor, size_target, window_width, window_height, \
     param_training, flip, lj_monitor_emg, lj_end_stim, \
-    emg_max_value2plot, emg_buffer
+    emg_max_value2plot, emg_buffer, mirrorScreen
 
 import os
 
@@ -47,7 +47,8 @@ class DISPLAY(object):
 
 
         ### SCREEN MIRRORED
-        # os.system('xrandr --output DP1 --reflect x')
+        if mirrorScreen:
+            os.system('xrandr --output DP1 --reflect x')
 
     def target_found(self, start_target_found):
 
