@@ -21,10 +21,14 @@ class AnalogPlot:
             self.buff.pop()
             self.buff.appendleft(val)
 
-    # update max value
+#        if self.debug:
+#            print("Buffer : " + str(self.buff))
+
+    # update min and max value
     def update(self, min_max=False):
         inData = lji.read_analog(self.io)
         self.addToBuf(inData)
+
         if not self.buff.count(0) and min_max:
             val_temp = np.trapz(np.abs(self.buff))
             if self.max < val_temp:
@@ -32,7 +36,19 @@ class AnalogPlot:
             if self.min > val_temp:
                 self.min = val_temp
 
+            while self.min == self.max:
+                inData = lji.read_analog(self.io)
+                self.addToBuf(inData)
+                val_temp = np.trapz(np.abs(self.buff))
+                if self.max < val_temp:
+                    self.max = val_temp
+                if self.min > val_temp:
+                    self.min = val_temp
+
             del val_temp
+
+            if self.debug:
+                self.print_parameters()
 
     def print_parameters(self):
         print('Max: ',self.max)

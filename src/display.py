@@ -300,6 +300,12 @@ class DISPLAY(object):
 
         rt_plot.update(get_minmax)
 
+        if self.debug:
+            print 'rt_plot.min : ' + str(rt_plot.min)
+
+        if self.debug:
+            print 'rt_plot.max : ' + str(rt_plot.max)
+
         current_val = float('NaN')
 
         while np.isnan(current_val):

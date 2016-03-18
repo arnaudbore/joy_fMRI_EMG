@@ -40,12 +40,15 @@ mode.display_edges()
 #
 # display all targets
 #
-rt_plot = lji_rt.AnalogPlot(lj_monitor_emg, emg_buffer, False)
+rt_plot = lji_rt.AnalogPlot(lj_monitor_emg, emg_buffer, debug_mode)
 
-# load calibration emg
-#[rt_plot.min, rt_plot.max] = load_emg_calibration()
-
+# Calibration get_minmax
 get_minmax = True
+
+if float(sys.argv[1]) == 0:
+    # load calibration emg
+    get_minmax = False
+    [rt_plot.min, rt_plot.max] = load_emg_calibration(subject_id)
 
 while running:
     mode.display_monitor_emg(rt_plot, get_minmax)
@@ -57,12 +60,14 @@ while running:
             # Quit if something goes wrong
             #
             if event.unicode == u'q':
-                #################################
-                #Create calibration file for EMG
-                print('Maximum value : ' + str(rt_plot.max))
-                print('Minimal value : ' + str(rt_plot.min))
+                if get_minmax: # If calibration
+                    #################################
+                    #Create calibration file for EMG
+                    print('Maximum value : ' + str(rt_plot.max))
+                    print('Minimal value : ' + str(rt_plot.min))
 
-                save_emg_calibration(rt_plot)
+                    save_emg_calibration(rt_plot, subject_id)
+
                 running = False
                 pygame.quit()
                 sys.exit()
