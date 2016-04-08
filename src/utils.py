@@ -128,7 +128,7 @@ def scale_position_cursor(joy_range, joy_status, graph, flip=0):
         elif ttx <= joy_range['x_min_range']:
             jx_scaled = graph.width
         elif ttx >= joy_range['x_center']:
-             jx_scaled = int(
+            jx_scaled = int(
                 abs((joy_range['x_max'] - ttx)) * graph.width / (2 * (joy_range['x_min_range'])))
         else:
             jx_scaled = int(
@@ -240,9 +240,8 @@ def extract_min_rt(subject_id, logfilename, param):
     [infos, key] = read_log(logfilename)
 
     if debug_mode:
-        print 'Infos_description: '+str(infos['description'])
-        print 'Logfilename: '+str(logfilename)
-
+        print 'Infos_description: ' + str(infos['description'])
+        print 'Logfilename: ' + str(logfilename)
 
     all_rt = []
 
@@ -250,8 +249,8 @@ def extract_min_rt(subject_id, logfilename, param):
     indexes_target_end = [i for i, x in enumerate(infos['description']) if x == "Target end"]
 
     if debug_mode:
-        print 'len(indexes_target_end): '+str(len(indexes_target_end))
-        print 'len(indexes_target_start): '+str(len(indexes_target_start))
+        print 'len(indexes_target_end): ' + str(len(indexes_target_end))
+        print 'len(indexes_target_start): ' + str(len(indexes_target_start))
 
     if len(indexes_target_start) == len(indexes_target_end):
         for index in range(len(indexes_target_start)):
@@ -353,11 +352,11 @@ def log_header(logfile, joy_status, task_info, joy_range=0, min_rt=0):
     create header for the logfile
     """
 
-    if not joy_range==0:
+    if not joy_range == 0:
         for key, val in joy_range.items():
             logfile.write("%s:%s\n" % (str(key), str(val)))
 
-    if not min_rt==0:
+    if not min_rt == 0:
         logfile.write("min_rt:%s\n" % str(min_rt))
 
     for key, val in joy_status.items():
@@ -433,11 +432,11 @@ def load_calibration():
     return joy_range
 
 
-def save_emg_calibration(rt_plot):
+def save_emg_calibration(rt_plot, subject_id):
     """
     save joy_range for next calibration - use of jr (joy_range) extension
     """
-    logfile = os.getcwd() + os.sep + 'calibration.emg'
+    logfile = os.getcwd() + os.sep + subject_id + "_calibration.emg"
     print logfile
 
     f = open(logfile, 'w')
@@ -448,11 +447,13 @@ def save_emg_calibration(rt_plot):
     f.close()
 
 
-def load_emg_calibration():
+def load_emg_calibration(subject_id):
     """
-    load calibration
+    load em calibration for each subject
+    :param subject_id:
+    :return: rt_min and rt_max
     """
-    calibration_file = os.getcwd() + os.sep + 'calibration.emg'
+    calibration_file = os.getcwd() + os.sep + subject_id + "_calibration.emg"
 
     fc = open(calibration_file)
     line = fc.readline()
@@ -508,4 +509,3 @@ def check_event_learning():
                     key_pressed = True
                 else:
                     key_pressed = False
-

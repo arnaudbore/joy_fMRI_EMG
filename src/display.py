@@ -267,7 +267,7 @@ class DISPLAY(object):
             #
             # get EMG information
             #
-            [rt_plot.min, rt_plot.max] = load_emg_calibration()
+            [rt_plot.min, rt_plot.max] = load_emg_calibration(self.task_info['subject_id'])
 
             self.task_info['rt_emg_min'] = rt_plot.min
             self.task_info['rt_emg_max'] = rt_plot.max
@@ -310,6 +310,8 @@ class DISPLAY(object):
 
         while np.isnan(current_val):
             val = np.trapz(np.abs(rt_plot.buff))
+            #val = np.median(np.abs(rt_plot.buff))
+
             current_val = np.divide(val - rt_plot.min, rt_plot.max - rt_plot.min)
 
         if self.debug:

@@ -86,6 +86,8 @@ poll_thread.start()
 # Start DISPLAY
 mode = DISPLAY('USB connection', poll_thread, task_info, FPS, fullscreen_on, debug_mode)
 
+mode.task_info['subject_id'] = subject_id
+
 #
 # write header
 #

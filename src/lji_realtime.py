@@ -20,9 +20,8 @@ class AnalogPlot:
         else:
             self.buff.pop()
             self.buff.appendleft(val)
-
-#        if self.debug:
-#            print("Buffer : " + str(self.buff))
+        #elif self.debug:
+        #    print("Buffer : " + str(self.buff))
 
     # update min and max value
     def update(self, min_max=False):
