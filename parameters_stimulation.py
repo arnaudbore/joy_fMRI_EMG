@@ -53,7 +53,7 @@ else:
     fullscreen_on = True  # False or True
 
 # Mirror Screen
-mirrorScreen = False
+mirrorScreen = True
 
 # Folder where to save logs
 output_dir = '/home/labdoyon/Documents/PycharmProjects/Stimulation_Data/'
@@ -119,10 +119,10 @@ param_task = {'nbKeys': 80, # 8
               'seqUsed': [1, 2, 3, 1, 4, 2, 4, 3],
               'seq_ctrl_used_bloc_even': [2, 3, 2, 3, 2, 3, 2, 3],
               'seq_ctrl_used_bloc_odd': [1, 4, 1, 4, 1, 4, 1, 4],
-              'nbBlocs': 15, # 16
-              'rest_time': 15,  # 5
+              'nbBlocs': 15,
+              'rest_time': 15,
               'time_target': 0.005,
-              'numBloc_Reststim': [1, 2, 14, 15],
+              'numBloc_Reststim': [1, 2, 3, 13, 14, 15],
               'numBloc_EMGmonitor': [1, 14],
               'mri_trigger': False,
               'run_stimulation': True,

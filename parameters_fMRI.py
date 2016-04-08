@@ -53,10 +53,10 @@ else:
     fullscreen_on = True  # False or True
 
 # Mirror Screen
-mirrorScreen = False
+mirrorScreen = True
 
 # Folder where to save logs
-output_dir = '/home/labdoyon/Documents/PycharmProjects/joy_fMRI_EMG/fMRI/'
+output_dir = '/home/labdoyon/Documents/PycharmProjects/Output_fMRI/'
 
 # Flip clock wise joystick
 flip = 'right'  # or 0, 'left' or 'right'

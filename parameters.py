@@ -53,7 +53,7 @@ else:
     fullscreen_on = True  # False or True
 
 # Mirror Screen
-mirrorScreen = False
+mirrorScreen = True
 
 # Folder where to save logs
 output_dir = '/home/labdoyon/Documents/PycharmProjects/Development/'
