@@ -53,7 +53,7 @@ else:
     fullscreen_on = True  # False or True
 
 # Mirror Screen
-mirrorScreen = True
+mirrorScreen = False
 
 # Folder where to save logs
 output_dir = '/home/labdoyon/Documents/PycharmProjects/Output_fMRI/'
